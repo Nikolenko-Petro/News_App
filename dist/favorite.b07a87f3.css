@@ -610,6 +610,37 @@ body.dark-theme {
   left: -5px;
 }
 
+.no-news__box {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-news__text {
+  text-align: center;
+  text-align: center;
+  letter-spacing: -.01em;
+  color: #111321;
+  margin-bottom: 40px;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+@media screen and (min-width: 768px) {
+  .no-news__text {
+    font-size: 40px;
+    line-height: 55px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .no-news__image {
+    width: 600px;
+  }
+}
+
 .news__image-box {
   margin-bottom: 20px;
   position: relative;
@@ -680,6 +711,14 @@ body.dark-theme {
     width: 353px;
     height: 395px;
   }
+
+  .news__image.already-read-bg {
+    opacity: .7;
+    -moz-opacity: .7;
+    filter: alpha(opacity= 80) black;
+    -khtml-opacity: .7;
+    background-color: #000;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -687,14 +726,6 @@ body.dark-theme {
     width: 395px;
     height: 395px;
   }
-}
-
-.news__image.already-read-bg {
-  opacity: .7;
-  -moz-opacity: .7;
-  filter: alpha(opacity= 80) black;
-  -khtml-opacity: .7;
-  background-color: #000;
 }
 
 .news__title {
@@ -888,31 +919,30 @@ body.dark-theme {
   right: 8px;
 }
 
-.already-read {
-  opacity: .8;
-}
-
-.already-read:before {
-  content: "Already read ✓";
-  color: #00b912;
-  z-index: 99;
-  background-color: #0000;
-  font-family: Manrope;
-  font-size: 14px;
-  line-height: 19px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 @media screen and (min-width: 768px) {
+  .already-read {
+    opacity: .8;
+  }
+
+  .already-read:before {
+    content: "Already read ✓";
+    color: #00b912;
+    z-index: 99;
+    font-family: Manrope;
+    font-size: 14px;
+    line-height: 19px;
+    position: absolute;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 768px) {
   .already-read:before {
     top: 20px;
     right: 20px;
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) and (min-width: 1280px) {
   .already-read:before {
     top: 15px;
     right: 30px;
@@ -948,7 +978,6 @@ main {
 .accordion__item {
   border-radius: .25rem;
   margin-bottom: 20px;
-  box-shadow: 0 .125rem .25rem #00000026;
 }
 
 @media screen and (min-width: 768px) {
@@ -1075,39 +1104,42 @@ main {
   }
 }
 
-.accordion__read {
-  opacity: .8;
-  position: relative;
-}
+@media screen and (min-width: 768px) {
+  .accordion__read {
+    opacity: .8;
+    position: relative;
+  }
 
-.accordion__read .news__image {
-  opacity: .7;
-  -moz-opacity: .7;
-  filter: alpha(opacity= 80) black;
-  -khtml-opacity: .7;
-  background-color: #000;
-}
-
-.accordion__read .news__image-box:before {
-  content: "Have read   ✓";
-  color: #00b912;
-  background-color: #0000;
-  font-family: Manrope;
-  font-size: 14px;
-  line-height: 19px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  .accordion__read .news__image {
+    opacity: .7;
+    -moz-opacity: .7;
+    filter: alpha(opacity= 80) black;
+    -khtml-opacity: .7;
+    background-color: #000;
+  }
 }
 
 @media screen and (min-width: 768px) {
+  .accordion__read .news__image-box:before {
+    content: "Have read   ✓";
+    color: #00b912;
+    font-family: Manrope;
+    font-size: 14px;
+    line-height: 19px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 768px) {
   .accordion__read .news__image-box:before {
     top: 20px;
     right: 20px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (min-width: 768px) {
   .accordion__read .news__image-box:before {
     top: 15px;
     right: 30px;
@@ -1195,7 +1227,7 @@ main {
   height: 12px;
   fill: #4440f6;
   pointer-events: none;
-  transition: transform .5s;
+  transition: transform .5s, fill .5s;
   position: absolute;
 }
 
@@ -1342,20 +1374,39 @@ main {
   border-color: #4440f6 !important;
 }
 
+.js-accent-secondary > p {
+  color: #fff !important;
+}
+
+.js-accent-secondary {
+  background-color: #cecbcb;
+  border-color: #cecbcb;
+}
+
+.js-accent-secondary:hover {
+  box-shadow: 1px 1px 5px #cecbcb;
+}
+
 .number-items__item.js-accent p {
   color: #fff;
 }
 
-.js-accent ~ .calendar__img {
-  fill: #fff;
-}
-
-.js-accent ~ .calendar__img--right {
-  transform: translate(0, -50%)rotate(180deg);
-}
-
 .js-dd-accent + .dd-wrapper__arrow {
   transform: rotate(90deg);
+}
+
+.simple-calendar ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.simple-calendar ::-webkit-scrollbar-track {
+  background: #0000001a;
+}
+
+.simple-calendar ::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 4px;
 }
 
 .button-box {
@@ -1369,10 +1420,14 @@ main {
   height: 31px;
   color: #11132166;
   cursor: pointer;
+  letter-spacing: .02em;
   background-color: #0000;
   border: 1px solid #111321;
   border-radius: 20px;
-  transition: border .25s, color .25s, background-color .25s;
+  font-family: Manrope;
+  font-size: 12px;
+  line-height: 1.75;
+  transition: border .5s, color .5s, background-color .5s;
 }
 
 .calendar__btn:focus, .calendar__btn:hover {
@@ -1387,7 +1442,7 @@ main {
 
 .calendar__img {
   pointer-events: none;
-  transition: fill .25s;
+  transition: fill .5s, transform .5s;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -1418,6 +1473,14 @@ main {
     width: 168px;
     font-size: 14px;
   }
+}
+
+.js-accent ~ .calendar__img {
+  fill: #fff;
+}
+
+.js-accent ~ .calendar__img--right {
+  transform: translate(0, -50%)rotate(180deg);
 }
 
 .datepicker {
@@ -1739,6 +1802,16 @@ main {
   display: flex;
 }
 
+.show-more-btn:hover {
+  color: #fff;
+  background-color: #4440f6;
+  transition: border .5s, color .5s, background-color .5s;
+}
+
+.show-more-btn:hover .open-icon {
+  fill: #fff;
+}
+
 @media screen and (min-width: 768px) {
   .show-more-btn {
     margin-right: 24px;
@@ -1797,6 +1870,12 @@ main {
   display: flex;
 }
 
+.btn-desktop:hover {
+  color: #fff;
+  background-color: #4440f6;
+  transition: border .5s, color .5s, background-color .5s;
+}
+
 .desktop-btn-active {
   color: #fff;
   background-color: #4440f6;
@@ -1804,6 +1883,7 @@ main {
 
 .desktop-btn-active .open-icon {
   fill: #fff;
+  transition: fill .5s, transform .5s;
   transform: rotate(180deg);
 }
 

@@ -508,9 +508,13 @@ var _toggleThemeDark = require("./js/header/toggle-theme-dark");
 var _burgerMenu = require("./js/header/burger-menu");
 
 },{"./js/favorit/savedNews":"3MO3K","./js/header/toggle-theme-dark":"f9DTm","./js/header/burger-menu":"fz9DP"}],"3MO3K":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _noNewsTab2XPng = require("../../images/no-news/no-news-tab@2x.png");
+var _noNewsTab2XPngDefault = parcelHelpers.interopDefault(_noNewsTab2XPng);
 const favoretiNewsEl = document.querySelector(".favorite-list");
 function createMarkup() {
-    if (localStorage.length === 1) return;
+    if (localStorage.length === 1) return favoretiNewsEl.innerHTML = `<div class="no-news__box"><p class="no-news__text">Nothing to read in this section</p>
+  <img class="no-news__image" src="${0, _noNewsTab2XPngDefault.default}" alt="no-news" width="400px"/></div>`;
     if (localStorage.getItem("news-added-to-favorite")) {
         const markup = JSON.parse(localStorage.getItem("news-added-to-favorite")).map((item)=>`
     <li class="news__item-fav" data-id="${item.id}">
@@ -547,6 +551,73 @@ function deleteItemMarkup(event) {
     createMarkup();
 }
 favoretiNewsEl.addEventListener("click", deleteItemMarkup);
+
+},{"../../images/no-news/no-news-tab@2x.png":"3L7yS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L7yS":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("ikeZg") + "no-news-tab@2x.a87318fd.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}],"f9DTm":[function(require,module,exports) {
 // const toggle = document.getElementById('toggle');
@@ -809,36 +880,6 @@ var enableBodyScroll = function enableBodyScroll(targetElement) {
     else restoreOverflowSetting();
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}]},["bJun3","lFekr"], "lFekr", "parcelRequired7c6")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["bJun3","lFekr"], "lFekr", "parcelRequired7c6")
 
 //# sourceMappingURL=favorite.51038927.js.map

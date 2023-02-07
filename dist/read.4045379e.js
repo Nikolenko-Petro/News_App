@@ -503,12 +503,12 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"1LSLh":[function(require,module,exports) {
-var _readAccordion = require("./js/read-accordion");
-var _readRenderFromLs = require("./js/read-render-from-ls");
+var _readAccordion = require("./js/read/read-accordion");
+var _readRenderFromLs = require("./js/read/read-render-from-ls");
 var _toggleThemeDark = require("./js/header/toggle-theme-dark");
 var _burgerMenu = require("./js/header/burger-menu");
 
-},{"./js/read-accordion":"h91R9","./js/read-render-from-ls":"fbByR","./js/header/toggle-theme-dark":"f9DTm","./js/header/burger-menu":"fz9DP"}],"h91R9":[function(require,module,exports) {
+},{"./js/read/read-accordion":"7k1Ti","./js/read/read-render-from-ls":"4P5nJ","./js/header/toggle-theme-dark":"f9DTm","./js/header/burger-menu":"fz9DP"}],"7k1Ti":[function(require,module,exports) {
 class ItcAccordion {
     constructor(target, config){
         this._el = typeof target === "string" ? document.querySelector(target) : target;
@@ -582,21 +582,17 @@ new ItcAccordion(".accordion", {
     alwaysOpen: false
 });
 
-},{}],"fbByR":[function(require,module,exports) {
+},{}],"4P5nJ":[function(require,module,exports) {
 var _addToRead = require("./add-to-read");
 const jsonFromLocalStorage = (0, _addToRead.alreadyRead).getJsonFromLocalStorage("alreadyReadNews");
 const news = (0, _addToRead.alreadyRead).dataFromLocalStorage(jsonFromLocalStorage);
 const accordionEl = document.querySelector(".accordion");
 checkDataFromLocalStorage();
 function checkDataFromLocalStorage() {
-    if (news !== null) // const arrOfNews = news.map(arr => arr[0]);
-    // console.log('🆑  arrOfNews', arrOfNews);
-    // console.log('🆑  arrOfNews', arrOfNews);
-    renderAccordionBody(news);
+    if (news !== null) renderAccordionBody(news);
 }
-// const arrOfNews = spliceObjWithNews();
 function renderAccordionBody(arrOfNews) {
-    const markup = arrOfNews.map((item)=>`<div class="accordion__item accordion__item_show">
+    const markup = arrOfNews.map((item)=>`<div class="accordion__item">
   <div class="accordion__header">${item.date}</div>
   <div class="accordion__body">
     <ul class="news__list accordion__list">
@@ -609,9 +605,22 @@ function renderAccordionBody(arrOfNews) {
 function renderAccordionItems(arr) {
     const markup1 = arr.map((item)=>{
         let wayToUrl;
+        let dateAPI;
+        let urlLive;
+        if (item.hasOwnProperty("url")) urlLive = item.url;
+        else urlLive = item.web_url;
+        if (item.hasOwnProperty("pub_date")) dateAPI = item.pub_date;
+        else dateAPI = item.published_date;
         if (item.hasOwnProperty("multimedia") && item.hasOwnProperty("kicker")) wayToUrl = `${item.multimedia[3].url}`;
-        else if (item.hasOwnProperty("multimedia")) wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
-        else if (item.hasOwnProperty("media")) wayToUrl = item.media[0]["media-metadata"][2].url;
+        else if (item.hasOwnProperty("multimedia")) {
+            wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
+            dateAPI = item.pub_date;
+        } else if (item.hasOwnProperty("media")) {
+            wayToUrl = item.media[0]["media-metadata"][2].url;
+            dateAPI = item.published_date;
+        }
+        const date = new Date(dateAPI);
+        const normalDate = date.toISOString().split("T")[0];
         const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
           <img
@@ -627,9 +636,9 @@ function renderAccordionItems(arr) {
             >
               Add to favorite
             </button>
-            <svg class="favorite-btn__icon-add" width="16" height="16">
-              <use href="./images/icons.svg#icon-icon-heart-1"></use>
-            </svg>
+            <svg class="favorite-btn__icon-add" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.66659 1C2.82592 1 1.33325 2.47733 1.33325 4.3C1.33325 5.77133 1.91659 9.26333 7.65858 12.7933C7.76144 12.8559 7.87952 12.889 7.99992 12.889C8.12032 12.889 8.2384 12.8559 8.34125 12.7933C14.0833 9.26333 14.6666 5.77133 14.6666 4.3C14.6666 2.47733 13.1739 1 11.3333 1C9.49258 1 7.99992 3 7.99992 3C7.99992 3 6.50725 1 4.66659 1Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
           </div>
           <h3 class="news__image-heading">${item.section || item.section_name}</h3>
         </div>
@@ -638,8 +647,8 @@ function renderAccordionItems(arr) {
         <p class="news__text">${item.abstract}
         </p>
         <div class="news__lower-box">
-          <p class="news__date">date</p>
-          <a class="news__readmore-link" href="#">Read more</a>
+          <p class="news__date">${normalDate}</p>
+          <a class="news__readmore-link" href="${urlLive}">Read more</a>
         </div>
       </li>`;
         return markup;
@@ -647,7 +656,7 @@ function renderAccordionItems(arr) {
     return markup1;
 }
 
-},{"./add-to-read":"8N0ZO"}],"8N0ZO":[function(require,module,exports) {
+},{"./add-to-read":"2BGxX"}],"2BGxX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "alreadyRead", ()=>alreadyRead);
@@ -690,9 +699,7 @@ class Read {
     saveToLocalStorage() {
         localStorage.setItem("alreadyReadNews", JSON.stringify(this.readNews));
     }
-    leaveUniqueNews() {
-    // toDo create filterUnique function
-    }
+    leaveUniqueNews() {}
     addLeadingZero(value) {
         return String(value).padStart(2, "0");
     }
@@ -701,9 +708,9 @@ const alreadyRead = new Read();
 function handleReadMoreBtnClick(e) {
     const currentItemID = String(e.target.parentNode.parentNode.getAttribute("data-id"));
     const json = alreadyRead.getJsonFromLocalStorage("NewsFromHome");
-    const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
-    alreadyRead.newsArr = news; // записываем их для поиска
-    alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
+    const news = alreadyRead.dataFromLocalStorage(json);
+    alreadyRead.newsArr = news;
+    alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID);
     if (alreadyRead.readNews.length === 0) {
         const todayNews = {
             date: `${alreadyRead.getCurrentDate()}`,
@@ -711,903 +718,10 @@ function handleReadMoreBtnClick(e) {
                 alreadyRead.checkedNew
             ]
         };
-        alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
+        alreadyRead.readNews.push(todayNews);
     } else alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(alreadyRead.checkedNew);
-    // alreadyRead.leaveUniqueNews();
     alreadyRead.saveToLocalStorage();
 }
-// common arr in localStorage []
-// strucure of arr with read-news on single day
-//    [{date:30.01.2023, news: [{...}, {....}, {....}]] - arr on every date
-// toDo - create uniqueFilter function
-// toDo - fix date format from 12/1/2023 to 12/01/2023
-// toDo - сделать класс show только первому списку аккордеона
-// toDo - убрать дублирование в сторедж пришедщих новіх новостей
-// testing arrays with different days
-const dayOne = [
-    {
-        date: "30/1/2023",
-        news: [
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            }, 
-        ]
-    }, 
-];
-const dayTwo = [
-    {
-        date: "31/1/2023",
-        news: [
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            }, 
-        ]
-    }, 
-];
-const arr = [
-    dayOne,
-    dayTwo
-]; // localStorage.setItem('alreadyReadNews', JSON.stringify(arr));
- // let idOfHaveReadNews = [];
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {

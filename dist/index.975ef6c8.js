@@ -506,7 +506,7 @@ function hmrAcceptRun(bundle, id) {
 var _newsFetch = require("./js/requests/newsFetch");
 var _createMarkup = require("./js/markup/createMarkup");
 var _renderMarkup = require("./js/markup/renderMarkup");
-var _haveReadOnHome = require("./js/haveReadOnHome");
+var _haveReadOnHome = require("./js/read/haveReadOnHome");
 var _checkBtnId = require("./js/favorit/checkBtnId");
 var _toggleThemeDark = require("./js/header/toggle-theme-dark");
 var _calendar = require("./js/calendar/calendar");
@@ -518,9 +518,9 @@ var _favoriteToLocalStorage = require("./js/favorit/favoriteToLocalStorage");
 var _weatherFetch = require("./js/requests/weatherFetch");
 var _categories = require("./js/categories");
 var _btnSearchMob = require("./js/header/btn-search-mob");
-var _addToRead = require("./js/add-to-read");
+var _addToRead = require("./js/read/add-to-read");
 var _paginationFetch = require("./js/pagination/paginationFetch");
-var _fromFetchToLocalStorage = require("./js/fromFetchToLocalStorage");
+var _fromFetchToLocalStorage = require("./js/read/fromFetchToLocalStorage");
 var _inputFetch = require("./js/header/inputFetch");
 const refs = {
     newsList: document.querySelector(".news__list")
@@ -534,8 +534,503 @@ const refs = {
     (0, _fromFetchToLocalStorage.addFetchedToLocalStorage)(results);
     (0, _haveReadOnHome.haveRead).checkFetchedNewsByID(results);
 });
+const obj1 = {
+    date: "30/01/2023",
+    news: [
+        {
+            uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
+            url: "https://www.nytimes.com/article/expiration-dates.html",
+            id: 100000007075927,
+            asset_id: 100000007075927,
+            source: "New York Times",
+            published_date: "2020-04-13",
+            updated: "2023-01-31 08:50:55",
+            section: "Food",
+            subsection: "",
+            nytdsection: "food",
+            adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
+            column: null,
+            byline: "By J. Kenji L\xf3pez-Alt",
+            type: "Article",
+            title: "The Food Expiration Dates You Should Actually Follow",
+            abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
+            des_facet: [
+                "Cooking and Cookbooks",
+                "Food",
+                "Quarantine (Life and Culture)",
+                "Food Contamination and Poisoning",
+                "internal-sub-only", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Jonathan Carlson",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        },
+        {
+            uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
+            url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
+            id: 100000008734867,
+            asset_id: 100000008734867,
+            source: "New York Times",
+            published_date: "2023-01-19",
+            updated: "2023-01-23 13:30:40",
+            section: "Well",
+            subsection: "Live",
+            nytdsection: "well",
+            adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
+            column: null,
+            byline: "By Jancee Dunn",
+            type: "Article",
+            title: "3 Steps to Age Exuberantly",
+            abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
+            des_facet: [
+                "Elderly",
+                "Age, Chronological",
+                "Content Type: Service",
+                "Longevity",
+                "Memory",
+                "internal-sub-only-nl", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Delcan & Co.",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        }, 
+    ]
+};
+const obj2 = {
+    date: "31/01/2023",
+    news: [
+        {
+            uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
+            url: "https://www.nytimes.com/article/expiration-dates.html",
+            id: 100000007075927,
+            asset_id: 100000007075927,
+            source: "New York Times",
+            published_date: "2020-04-13",
+            updated: "2023-01-31 08:50:55",
+            section: "Food",
+            subsection: "",
+            nytdsection: "food",
+            adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
+            column: null,
+            byline: "By J. Kenji L\xf3pez-Alt",
+            type: "Article",
+            title: "The Food Expiration Dates You Should Actually Follow",
+            abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
+            des_facet: [
+                "Cooking and Cookbooks",
+                "Food",
+                "Quarantine (Life and Culture)",
+                "Food Contamination and Poisoning",
+                "internal-sub-only", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Jonathan Carlson",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        },
+        {
+            uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
+            url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
+            id: 100000008734867,
+            asset_id: 100000008734867,
+            source: "New York Times",
+            published_date: "2023-01-19",
+            updated: "2023-01-23 13:30:40",
+            section: "Well",
+            subsection: "Live",
+            nytdsection: "well",
+            adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
+            column: null,
+            byline: "By Jancee Dunn",
+            type: "Article",
+            title: "3 Steps to Age Exuberantly",
+            abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
+            des_facet: [
+                "Elderly",
+                "Age, Chronological",
+                "Content Type: Service",
+                "Longevity",
+                "Memory",
+                "internal-sub-only-nl", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Delcan & Co.",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        }, 
+    ]
+};
+const obj3 = {
+    date: "01/02/2023",
+    news: [
+        {
+            uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
+            url: "https://www.nytimes.com/article/expiration-dates.html",
+            id: 100000007075927,
+            asset_id: 100000007075927,
+            source: "New York Times",
+            published_date: "2020-04-13",
+            updated: "2023-01-31 08:50:55",
+            section: "Food",
+            subsection: "",
+            nytdsection: "food",
+            adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
+            column: null,
+            byline: "By J. Kenji L\xf3pez-Alt",
+            type: "Article",
+            title: "The Food Expiration Dates You Should Actually Follow",
+            abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
+            des_facet: [
+                "Cooking and Cookbooks",
+                "Food",
+                "Quarantine (Life and Culture)",
+                "Food Contamination and Poisoning",
+                "internal-sub-only", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Jonathan Carlson",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        },
+        {
+            uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
+            url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
+            id: 100000008734867,
+            asset_id: 100000008734867,
+            source: "New York Times",
+            published_date: "2023-01-19",
+            updated: "2023-01-23 13:30:40",
+            section: "Well",
+            subsection: "Live",
+            nytdsection: "well",
+            adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
+            column: null,
+            byline: "By Jancee Dunn",
+            type: "Article",
+            title: "3 Steps to Age Exuberantly",
+            abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
+            des_facet: [
+                "Elderly",
+                "Age, Chronological",
+                "Content Type: Service",
+                "Longevity",
+                "Memory",
+                "internal-sub-only-nl", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Delcan & Co.",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        }, 
+    ]
+};
+const obj4 = {
+    date: "02/02/2023",
+    news: [
+        {
+            uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
+            url: "https://www.nytimes.com/article/expiration-dates.html",
+            id: 100000007075927,
+            asset_id: 100000007075927,
+            source: "New York Times",
+            published_date: "2020-04-13",
+            updated: "2023-01-31 08:50:55",
+            section: "Food",
+            subsection: "",
+            nytdsection: "food",
+            adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
+            column: null,
+            byline: "By J. Kenji L\xf3pez-Alt",
+            type: "Article",
+            title: "The Food Expiration Dates You Should Actually Follow",
+            abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
+            des_facet: [
+                "Cooking and Cookbooks",
+                "Food",
+                "Quarantine (Life and Culture)",
+                "Food Contamination and Poisoning",
+                "internal-sub-only", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Jonathan Carlson",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        },
+        {
+            uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
+            url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
+            id: 100000008734867,
+            asset_id: 100000008734867,
+            source: "New York Times",
+            published_date: "2023-01-19",
+            updated: "2023-01-23 13:30:40",
+            section: "Well",
+            subsection: "Live",
+            nytdsection: "well",
+            adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
+            column: null,
+            byline: "By Jancee Dunn",
+            type: "Article",
+            title: "3 Steps to Age Exuberantly",
+            abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
+            des_facet: [
+                "Elderly",
+                "Age, Chronological",
+                "Content Type: Service",
+                "Longevity",
+                "Memory",
+                "internal-sub-only-nl", 
+            ],
+            org_facet: [],
+            per_facet: [],
+            geo_facet: [],
+            media: [
+                {
+                    type: "image",
+                    subtype: "photo",
+                    caption: "",
+                    copyright: "Delcan & Co.",
+                    approved_for_syndication: 1,
+                    "media-metadata": [
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
+                            format: "Standard Thumbnail",
+                            height: 75,
+                            width: 75
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
+                            format: "mediumThreeByTwo210",
+                            height: 140,
+                            width: 210
+                        },
+                        {
+                            url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
+                            format: "mediumThreeByTwo440",
+                            height: 293,
+                            width: 440
+                        }, 
+                    ]
+                }, 
+            ],
+            eta_id: 0
+        }, 
+    ]
+};
+const all = [
+    obj1,
+    obj2,
+    obj3,
+    obj4
+];
+localStorage.setItem("alreadyReadNews", JSON.stringify(all));
 
-},{"./js/requests/newsFetch":"rV8zm","./js/markup/createMarkup":"hd7ZQ","./js/markup/renderMarkup":"flc1Q","./js/header/toggle-theme-dark":"f9DTm","./js/calendar/calendar":"8oxyq","./js/calendar/calendarFetch":"65ekm","./js/header/burger-menu":"fz9DP","./js/favorit/favoritButton":"dDndo","./js/pagination/pagination":"gIUTo","./js/requests/weatherFetch":"2HtmT","./js/categories":"9P53f","./js/header/btn-search-mob":"c0Zyy","./js/header/inputFetch":"cYlDo","./js/add-to-read":"8N0ZO","./js/pagination/paginationFetch":"fRqDa","./js/favorit/favoriteToLocalStorage":"cM83U","./js/haveReadOnHome":"ajQd1","./js/favorit/checkBtnId":"bnYX0","./js/fromFetchToLocalStorage":"5R6nN"}],"rV8zm":[function(require,module,exports) {
+},{"./js/requests/newsFetch":"rV8zm","./js/markup/createMarkup":"hd7ZQ","./js/markup/renderMarkup":"flc1Q","./js/read/haveReadOnHome":"akEGE","./js/favorit/checkBtnId":"bnYX0","./js/header/toggle-theme-dark":"f9DTm","./js/calendar/calendar":"8oxyq","./js/calendar/calendarFetch":"65ekm","./js/header/burger-menu":"fz9DP","./js/favorit/favoritButton":"dDndo","./js/pagination/pagination":"gIUTo","./js/favorit/favoriteToLocalStorage":"cM83U","./js/requests/weatherFetch":"2HtmT","./js/categories":"9P53f","./js/header/btn-search-mob":"c0Zyy","./js/read/add-to-read":"2BGxX","./js/pagination/paginationFetch":"fRqDa","./js/read/fromFetchToLocalStorage":"04BY2","./js/header/inputFetch":"cYlDo"}],"rV8zm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getNews", ()=>getNews) // Для самых популярных новостей: getNews("mostPopular")
@@ -548,7 +1043,7 @@ var _axiosDefaults = require("../axios/axiosDefaults");
 var _notiflix = require("notiflix");
 async function getNews(pathName, parameters, category) {
     const path = {
-        mostPopular: "mostpopular/v2/emailed/7.json",
+        mostPopular: "mostpopular/v2//viewed/1.json",
         articles: "search/v2/articlesearch.json",
         allCategories: "news/v3/content/section-list.json",
         category: `news/v3/content/all/${category}.json`
@@ -5707,11 +6202,16 @@ function createMarkup(data, markupName) {
     const IMAGES_URL = "https://www.nytimes.com/";
     let markupArr = [];
     let imageUrl;
-    if (markupName === "popularCards") markupArr = data.flatMap((el)=>{
-        if (el.media.length !== 0) imageUrl = el.media[0]["media-metadata"][2].url;
-        else imageUrl = "https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg";
-        return `
-
+    if (markupName === "popularCards") {
+        data.sort((a, b)=>{
+            const firstDate = new Date(a.published_date);
+            const lastDate = new Date(b.published_date);
+            return lastDate - firstDate;
+        });
+        markupArr = data.flatMap((el)=>{
+            if (el.media.length !== 0) imageUrl = el.media[0]["media-metadata"][2].url;
+            else imageUrl = "https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg";
+            return `
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
@@ -5732,7 +6232,8 @@ function createMarkup(data, markupName) {
         </div>
       </li>
       `;
-    });
+        });
+    }
     if (markupName === "dateCards") {
         let date;
         let normalDate;
@@ -5887,6 +6388,81 @@ function renderMarkup(parent, markup, placeForRender = "beforeend") {
     return;
 }
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"akEGE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "haveRead", ()=>haveRead);
+parcelHelpers.export(exports, "addHaveReadStylesForCard", ()=>addHaveReadStylesForCard);
+class HaveReadStyles {
+    constructor(){
+        this.currentItemID = null;
+    }
+    addAlreadyReadStyles(currentItemID) {
+        const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
+        currItemEl.classList.add("already-read");
+        const imgEl = currItemEl.firstElementChild.firstElementChild;
+        imgEl.classList.add("already-read-bg");
+    }
+    checkFetchedNewsByID(array) {
+        const json = this.getJsonFromLocalStorage("IdOfHaveReadNews");
+        const arrOfId = this.dataFromLocalStorage(json);
+        if (arrOfId !== null) array.forEach((result)=>{
+            let selected;
+            if (result.hasOwnProperty("slug_name")) selected = result.slug_name;
+            else if (result.hasOwnProperty("_id")) selected = result._id;
+            else if (result.hasOwnProperty("id")) selected = String(result.id);
+            if (arrOfId.includes(selected)) this.addAlreadyReadStyles(selected);
+        });
+    }
+    dataFromLocalStorage(json) {
+        try {
+            const data = JSON.parse(json);
+            return data;
+        } catch (error) {
+            console.log(error.name);
+            console.log(error.message);
+        }
+    }
+    getJsonFromLocalStorage(key) {
+        const json = localStorage.getItem(key);
+        return json;
+    }
+}
+const haveRead = new HaveReadStyles();
+function addHaveReadStylesForCard(event) {
+    haveRead.currentItemID = event.target.parentNode.parentNode.getAttribute("data-id");
+    const json = haveRead.getJsonFromLocalStorage("IdOfHaveReadNews");
+    const arrOfId = haveRead.dataFromLocalStorage(json);
+    if (arrOfId !== null) {
+        arrOfId.push(haveRead.currentItemID);
+        localStorage.setItem("IdOfHaveReadNews", JSON.stringify(arrOfId));
+    } else localStorage.setItem("IdOfHaveReadNews", JSON.stringify([
+        haveRead.currentItemID
+    ]));
+    haveRead.addAlreadyReadStyles(haveRead.currentItemID);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bnYX0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "checkBtnId", ()=>checkBtnId);
+function checkBtnId() {
+    if (localStorage.getItem("news-added-to-favorite")) {
+        const btnlistELements = document.querySelectorAll(".news__item");
+        btnlistELements.forEach((item)=>{
+            JSON.parse(localStorage.getItem("news-added-to-favorite")).find((elem)=>{
+                if (item.dataset.id === elem.id) {
+                    item.firstElementChild.children[1].firstElementChild.textContent = "Remove from favorite";
+                    item.firstElementChild.children[1].firstElementChild.classList.remove("news__favorite-btn");
+                    item.firstElementChild.children[1].firstElementChild.classList.add("btn-width");
+                    item.firstElementChild.children[1].lastElementChild.classList.remove("favorite-btn__icon-add");
+                    item.firstElementChild.children[1].lastElementChild.classList.add("favorite-btn__icon-remove");
+                }
+            });
+        });
+    }
+}
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f9DTm":[function(require,module,exports) {
 // const toggle = document.getElementById('toggle');
 const toggle = document.querySelector(".js-toggle");
@@ -5915,17 +6491,18 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getDate", ()=>getDate);
 parcelHelpers.export(exports, "addEventListenerToChangeDate", ()=>addEventListenerToChangeDate);
 var _simpleCalendar = require("../simple-calendar/simple-calendar");
+const currentDate = new Date();
 const calendarBtn = document.querySelector(".calendar__btn");
 const simpleCalendar = new (0, _simpleCalendar.SimpleCalendar)({
-    fromYear: 1995,
-    toYear: 2030,
-    defaultDate: new Date()
+    fromYear: 1899,
+    toYear: currentDate.getFullYear(),
+    defaultDate: currentDate
 });
 // function setDate(timestamp) {
 //   simpleCalendar.setDate(timestamp);
 // }
 function getDate(dateType) {
-    return simpleCalendar.getDate(dateType);
+    return simpleCalendar.getFormattedDate(dateType);
 }
 function addEventListenerToChangeDate(callback) {
     calendarBtn.addEventListener("changeDate", (e)=>{
@@ -5933,13 +6510,9 @@ function addEventListenerToChangeDate(callback) {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../simple-calendar/simple-calendar":"67I7Y"}],"67I7Y":[function(require,module,exports) {
+},{"../simple-calendar/simple-calendar":"67I7Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"67I7Y":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getPositionForModal", ()=>getPositionForModal);
-parcelHelpers.export(exports, "addLeadingZero", ()=>addLeadingZero);
-parcelHelpers.export(exports, "getDaysInMonth", ()=>getDaysInMonth);
-parcelHelpers.export(exports, "getFirstDayOfMonth", ()=>getFirstDayOfMonth);
 parcelHelpers.export(exports, "SimpleCalendar", ()=>SimpleCalendar);
 const MONTHS = [
     "January",
@@ -5955,15 +6528,95 @@ const MONTHS = [
     "November",
     "December", 
 ];
-class SimpleCalendar {
-    constructor({ fromYear , toYear , defaultDate =null  }){
-        this.createBaseMarkup();
-        this.selectedDate;
+function getPositionForModal(buttonElem, modalElem, bodyElem) {
+    let x = 0;
+    let y = 0;
+    const getParams = (elem)=>{
+        const rect = elem.getBoundingClientRect();
+        return {
+            x: rect.x + window.scrollX,
+            y: rect.y + window.scrollY,
+            width: rect.width,
+            height: rect.height
+        };
+    };
+    const btnRect = getParams(buttonElem);
+    const modalRect = getParams(modalElem);
+    const bodyRect = getParams(bodyElem);
+    if (btnRect.x + btnRect.width > modalRect.width) x = btnRect.x - (modalRect.width - btnRect.width);
+    else if (bodyRect.width - (btnRect.x + btnRect.width) > modalRect.width) x = btnRect.x;
+    if (bodyRect.height - (btnRect.y + btnRect.height) < modalRect.height) y = btnRect.y - modalRect.height;
+    else y = btnRect.y + btnRect.height;
+    x = x < 0 ? 0 : x;
+    y = y < 0 ? 0 : y;
+    return {
+        x,
+        y
+    };
+}
+function addLeadingZero(num) {
+    return num < 10 ? String(`0${num}`) : String(num);
+}
+class SCDate {
+    constructor(defaultDate = null){
+        this.date;
+        if (!defaultDate) this.date = new Date();
+        else this.date = new Date(defaultDate);
+        this.pastDate = new Date(this.date);
+    }
+    getDate() {
+        return this.date.getDate();
+    }
+    comparePeriods() {
+        return this.date.getMonth() === this.pastDate.getMonth() && this.date.getFullYear() === this.pastDate.getFullYear();
+    }
+    getFormattedDate(format) {
+        const yyyy = this.date.getFullYear();
+        const mm = addLeadingZero(this.date.getMonth() + 1);
+        const dd = addLeadingZero(this.date.getDate());
+        // Негарне рішення, я знаю :-(
+        if (format === "yyyy-mm-dd") return `${yyyy}-${mm}-${dd}`;
+        else if (format === "yyyymmdd") return `${yyyy}${mm}${dd}`;
+        else return `${dd}/${mm}/${yyyy}`;
+    }
+    getYear() {
+        return this.date.getFullYear();
+    }
+    getMonth() {
+        return this.date.getMonth();
+    }
+    setDate(d) {
+        this.date.setDate(d);
+    }
+    savePastDate() {
+        this.pastDate = new Date(this.date);
+    }
+    setYear(y) {
+        this.date.setFullYear(y);
+    }
+    setMonth(m) {
+        this.date.setMonth(m);
+    }
+    getDaysInMonth(year, month) {
+        const h = new Date(year, month);
+        h.setMonth(h.getMonth() + 1);
+        h.setDate(h.getDate() - 1);
+        return h.getDate();
+    }
+    getFirstDayOfMonth(year, month) {
+        const d = new Date(year, month, 1).getDay();
+        return !d ? d + 6 : d - 1;
+    }
+}
+class SimpleCalendar extends SCDate {
+    constructor({ fromYear , toYear , defaultDate  }){
+        super(defaultDate);
         this.settings = {
             fromYear,
             toYear,
             defaultDate
         };
+        this.#createBaseMarkup();
         this.refs = {
             openBtn: document.querySelector(".simple-calendar-open"),
             calendar: document.querySelector(".simple-calendar"),
@@ -5977,9 +6630,6 @@ class SimpleCalendar {
             numItems: document.querySelector(".number-items"),
             yearList: document.querySelector(".years-drop-down")
         };
-        if (!defaultDate) defaultDate = new Date();
-        this.printYears();
-        this.#update(defaultDate.getFullYear(), defaultDate.getMonth(), defaultDate.getDate());
         this.refs.openBtn.addEventListener("click", this.#onOpenCalendar.bind(this));
         this.refs.backdrop.addEventListener("click", this.#onCloseCalendar.bind(this));
         this.refs.dropDownBtn.addEventListener("click", this.#onOpenPeriodBox.bind(this));
@@ -5988,8 +6638,15 @@ class SimpleCalendar {
         this.refs.prevBtn.addEventListener("click", this.#onClickPrev.bind(this));
         this.refs.numItems.addEventListener("click", this.#onSelectDate.bind(this));
         this.refs.yearList.addEventListener("click", this.#onSelectYear.bind(this));
+        this.refs.dropDownBtn.value = `${MONTHS[this.getMonth()]} ${this.getYear()}`;
+        this.#printDates();
+        this.#printDate();
+        this.#printYears();
+        this.#setValueToYearList(this.getYear());
+        this.#highlightCurrentDate();
+        this.#highlightCurrentMonth();
     }
-    createBaseMarkup() {
+     #createBaseMarkup() {
         const markup = `
       <div class="simple-calendar-backdrop js-not-visible">
         <div class="simple-calendar">
@@ -6113,100 +6770,55 @@ class SimpleCalendar {
         const body = document.querySelector("body");
         body.insertAdjacentHTML("beforeend", markup);
     }
-    getDate(format) {
-        const yyyy = this.selectedDate.getFullYear();
-        const mm = addLeadingZero(this.selectedDate.getMonth() + 1);
-        const dd = addLeadingZero(this.selectedDate.getDate());
-        // Негарне рішення, я знаю :-(
-        if (format === "yyyy-mm-dd") return `${yyyy}-${mm}-${dd}`;
-        else if (format === "yyyymmdd") return `${yyyy}${mm}${dd}`;
-        else return `${dd}/${mm}/${yyyy}`;
-    }
-     #update(year, monthIndex, date) {
-        this.selectedDate = new Date(year, monthIndex, date);
-        const dd = addLeadingZero(this.selectedDate.getDate());
-        const mm = addLeadingZero(this.selectedDate.getMonth() + 1);
-        const yyyy = this.selectedDate.getFullYear();
-        this.refs.openBtn.value = `${dd}/${mm}/${yyyy}`;
-        this.refs.dropDownBtn.value = `${MONTHS[monthIndex]} ${year}`;
-        this.printDates();
-        this.#setValueToYearList(year);
-        this.#highlightCurrentDate();
-        this.#highlightCurrentMonth();
-    }
-    setYear(year1) {
-        this.#update(year1, this.selectedDate.getMonth(), this.selectedDate.getDate());
-    }
-    setMonth(monthIndex1) {
-        this.#update(this.selectedDate.getFullYear(), monthIndex1, this.selectedDate.getDate());
-    }
-    setDate(dateNum) {
-        this.#update(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), dateNum);
-    }
-    toNextMonth() {
-        let month;
-        let year2;
-        if (this.selectedDate.getMonth() === 11) {
-            month = 0;
-            year2 = this.selectedDate.getFullYear() + 1;
-        } else {
-            month = this.selectedDate.getMonth() + 1;
-            year2 = this.selectedDate.getFullYear();
-        }
-        this.#update(year2, month, this.selectedDate.getDate());
-    }
-    toPrevMonth() {
-        let month;
-        let year3;
-        if (this.selectedDate.getMonth() === 0) {
-            month = 11;
-            year3 = this.selectedDate.getFullYear() - 1;
-        } else {
-            month = this.selectedDate.getMonth() - 1;
-            year3 = this.selectedDate.getFullYear();
-        }
-        this.#update(year3, month, this.selectedDate.getDate());
-    }
-    printYears() {
+     #printYears() {
         let markup = "";
         for(let i = 0; i <= this.settings.toYear - this.settings.fromYear; ++i){
-            const date1 = new Date();
-            date1.setFullYear(this.settings.fromYear + i);
-            markup += `<option class="sc-year" value="${date1.getFullYear()}">${date1.getFullYear()}</option>`;
+            const date = new Date();
+            date.setFullYear(this.settings.fromYear + i);
+            markup += `<option class="sc-year" value="${date.getFullYear()}">${date.getFullYear()}</option>`;
         }
         this.refs.yearList.innerHTML = markup;
     }
-    printDates() {
-        const year4 = this.selectedDate.getFullYear();
-        const month = this.selectedDate.getMonth();
+     #printDates() {
+        const year = this.getYear();
+        const month = this.getMonth();
+        const firstDay = this.getFirstDayOfMonth(year, month);
+        const days = this.getDaysInMonth(year, month);
         let markup = "";
-        const firstDay = getFirstDayOfMonth(year4, month);
-        const days = getDaysInMonth(year4, month);
-        // firstDay.getDay() <-- повертає день тижня який починається з неділі
-        const d = !firstDay.getDay() ? firstDay.getDay() + 6 : firstDay.getDay() - 1;
-        for(let i = 0; i < d; ++i)markup += `<li></li>`;
+        for(let i = 0; i < firstDay; ++i)markup += `<li></li>`;
         for(let i1 = 0; i1 < days; ++i1)markup += `<li class="number-items__item" data-active data-value="${i1 + 1}"><p class="number-items__num">${i1 + 1}</p></li>`;
-        this.refs.numItems.innerHTML = "";
-        this.refs.numItems.insertAdjacentHTML("beforeend", markup);
+        this.refs.numItems.innerHTML = markup;
     }
-     #setValueToYearList(year5) {
+     #printDate() {
+        const dd = addLeadingZero(this.getDate());
+        const mm = addLeadingZero(this.getMonth() + 1);
+        const yyyy = this.getYear();
+        this.refs.openBtn.value = `${dd}/${mm}/${yyyy}`;
+    }
+     #setValueToYearList(year) {
         const options = this.refs.yearList.options;
         [
             ...options
         ].map((opt)=>{
-            if (opt.value === String(year5)) this.refs.yearList.value = opt.value;
+            if (opt.value === String(year)) this.refs.yearList.value = opt.value;
         });
     }
      #highlightCurrentDate() {
-        const currentDate = this.selectedDate.getDate();
+        let highlighter;
+        if (this.comparePeriods()) highlighter = "js-accent";
+        else highlighter = "js-accent-secondary";
+        const selectedDate = this.getDate();
         [
             ...this.refs.numItems.children
         ].map((item)=>{
-            if (Number(item.dataset["value"]) === currentDate) item.classList.add("js-accent");
+            if (Number(item.dataset["value"]) === selectedDate) {
+                item.classList.add(highlighter);
+                return;
+            }
         });
     }
      #highlightCurrentMonth() {
-        const currentMonth = this.selectedDate.getMonth();
+        const currentMonth = this.getMonth();
         [
             ...this.refs.monthItems.children
         ].map((item)=>{
@@ -6220,9 +6832,11 @@ class SimpleCalendar {
         const position = getPositionForModal(this.refs.openBtn, this.refs.calendar, this.refs.backdrop);
         this.refs.calendar.style.top = `${position.y}px`;
         this.refs.calendar.style.left = `${position.x}px`;
+        this.#printDates();
+        this.#highlightCurrentDate();
     }
      #onCloseCalendar(e1) {
-        if (e1.target === e1.currentTarget) this.#closeCalendar();
+        if (e1.target === e1.currentTarget) this.close();
     }
      #onOpenPeriodBox(e2) {
         this.refs.dropDownBtn.classList.toggle("js-dd-accent");
@@ -6236,12 +6850,37 @@ class SimpleCalendar {
         else return;
         this.setMonth(Number(value));
         this.#closePeriodBox();
+        this.#refreshAll();
     }
      #onClickNext(e4) {
-        this.toNextMonth();
+        if (this.getYear() === this.settings.toYear && this.getMonth() >= 11) return;
+        let month;
+        let year;
+        if (this.getMonth() === 11) {
+            month = 0;
+            year = this.getYear() + 1;
+        } else {
+            month = this.getMonth() + 1;
+            year = this.getYear();
+        }
+        this.setYear(year);
+        this.setMonth(month);
+        this.#refreshAll();
     }
      #onClickPrev(e5) {
-        this.toPrevMonth();
+        if (this.getYear() === this.settings.fromYear && this.getMonth() <= 0) return;
+        let month;
+        let year;
+        if (this.getMonth() === 0) {
+            month = 11;
+            year = this.getYear() - 1;
+        } else {
+            month = this.getMonth() - 1;
+            year = this.getYear();
+        }
+        this.setYear(year);
+        this.setMonth(month);
+        this.#refreshAll();
     }
      #onSelectDate(e6) {
         let keys = [];
@@ -6254,16 +6893,22 @@ class SimpleCalendar {
             value = e6.target.dataset["value"];
         } else return;
         if (keys.includes("active")) {
-            this.setDate(value);
-            this.#closeCalendar();
+            this.setDate(Number(value));
             const customEvent = new CustomEvent("changeDate");
             this.refs.openBtn.dispatchEvent(customEvent);
+            this.#printDate();
+            this.savePastDate();
+            this.close();
         }
     }
      #onSelectYear(e7) {
-        this.setYear(e7.currentTarget.value);
+        this.setYear(Number(e7.currentTarget.value));
+        this.#setValueToYearList(e7.currentTarget.value);
+        this.#printDates();
+        this.refs.dropDownBtn.value = `${MONTHS[this.getMonth()]} ${this.getYear()}`;
+        this.#highlightCurrentDate();
     }
-     #closeCalendar() {
+    close() {
         this.refs.backdrop.classList.toggle("js-not-visible");
         this.refs.openBtn.classList.toggle("js-accent");
         this.#closePeriodBox();
@@ -6273,44 +6918,13 @@ class SimpleCalendar {
         this.refs.dateBox.classList.remove("js-not-visible");
         this.refs.dropDownBtn.classList.remove("js-dd-accent");
     }
-}
-function getPositionForModal(buttonElem, modalElem, bodyElem) {
-    let x = 0;
-    let y = 0;
-    const getParams = (elem)=>{
-        const rect = elem.getBoundingClientRect();
-        return {
-            x: rect.x + window.scrollX,
-            y: rect.y + window.scrollY,
-            width: rect.width,
-            height: rect.height
-        };
-    };
-    const btnRect = getParams(buttonElem);
-    const modalRect = getParams(modalElem);
-    const bodyRect = getParams(bodyElem);
-    if (btnRect.x + btnRect.width > modalRect.width) x = btnRect.x - (modalRect.width - btnRect.width);
-    else if (bodyRect.width - (btnRect.x + btnRect.width) > modalRect.width) x = btnRect.x;
-    if (bodyRect.height - (btnRect.y + btnRect.height) < modalRect.height) y = btnRect.y - modalRect.height;
-    else y = btnRect.y + btnRect.height;
-    x = x < 0 ? 0 : x;
-    y = y < 0 ? 0 : y;
-    return {
-        x,
-        y
-    };
-}
-function addLeadingZero(num) {
-    return num < 10 ? String(`0${num}`) : String(num);
-}
-function getDaysInMonth(year6, month) {
-    const h = new Date(year6, month);
-    h.setMonth(h.getMonth() + 1);
-    h.setDate(h.getDate() - 1);
-    return h.getDate();
-}
-function getFirstDayOfMonth(year7, month) {
-    return new Date(year7, month, 1);
+     #refreshAll() {
+        this.refs.dropDownBtn.value = `${MONTHS[this.getMonth()]} ${this.getYear()}`;
+        this.#printDates();
+        this.#highlightCurrentDate();
+        this.#highlightCurrentMonth();
+        this.#setValueToYearList(String(this.getYear()));
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"65ekm":[function(require,module,exports) {
@@ -6321,8 +6935,8 @@ var _renderMarkup = require("../markup/renderMarkup");
 var _createMarkup = require("../markup/createMarkup");
 var _pagination = require("../pagination/pagination");
 var _emptyFetch = require("../requests/emptyFetch");
-var _fromFetchToLocalStorage = require("../fromFetchToLocalStorage");
-var _haveReadOnHome = require("../haveReadOnHome");
+var _fromFetchToLocalStorage = require("../read/fromFetchToLocalStorage");
+var _haveReadOnHome = require("../read/haveReadOnHome");
 var _checkBtnId = require("../favorit/checkBtnId");
 const refs = {
     newsList: document.querySelector(".news__list")
@@ -6357,7 +6971,7 @@ const refs = {
     });
 });
 
-},{"notiflix":"5z0Oc","./calendar":"8oxyq","../requests/newsFetch":"rV8zm","../markup/renderMarkup":"flc1Q","../markup/createMarkup":"hd7ZQ","../pagination/pagination":"gIUTo","../requests/emptyFetch":"kNjUq","../fromFetchToLocalStorage":"5R6nN","../haveReadOnHome":"ajQd1","../favorit/checkBtnId":"bnYX0"}],"gIUTo":[function(require,module,exports) {
+},{"notiflix":"5z0Oc","./calendar":"8oxyq","../requests/newsFetch":"rV8zm","../markup/renderMarkup":"flc1Q","../markup/createMarkup":"hd7ZQ","../pagination/pagination":"gIUTo","../requests/emptyFetch":"kNjUq","../read/fromFetchToLocalStorage":"04BY2","../read/haveReadOnHome":"akEGE","../favorit/checkBtnId":"bnYX0"}],"gIUTo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // document.addEventListener('DOMContentLoaded', init, false);
@@ -6530,24 +7144,24 @@ function showNoNewsSection(data) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5R6nN":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"04BY2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "addFetchedToLocalStorage", ()=>addFetchedToLocalStorage);
-var _addToRead = require("../js/add-to-read");
+var _addToRead = require("./add-to-read");
 function addFetchedToLocalStorage(response) {
     const json = (0, _addToRead.alreadyRead).getJsonFromLocalStorage("NewsFromHome");
-    const news = (0, _addToRead.alreadyRead).dataFromLocalStorage(json); // получаем популярные новости из локалС
+    const news = (0, _addToRead.alreadyRead).dataFromLocalStorage(json);
     if (news !== null) {
         (0, _addToRead.alreadyRead).newsArr = [
             ...news,
             ...response
-        ]; // записываем их для поиска
+        ];
         localStorage.setItem("NewsFromHome", JSON.stringify((0, _addToRead.alreadyRead).newsArr));
     } else localStorage.setItem("NewsFromHome", JSON.stringify(response));
 }
 
-},{"../js/add-to-read":"8N0ZO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8N0ZO":[function(require,module,exports) {
+},{"./add-to-read":"2BGxX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2BGxX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "alreadyRead", ()=>alreadyRead);
@@ -6590,9 +7204,7 @@ class Read {
     saveToLocalStorage() {
         localStorage.setItem("alreadyReadNews", JSON.stringify(this.readNews));
     }
-    leaveUniqueNews() {
-    // toDo create filterUnique function
-    }
+    leaveUniqueNews() {}
     addLeadingZero(value) {
         return String(value).padStart(2, "0");
     }
@@ -6601,9 +7213,9 @@ const alreadyRead = new Read();
 function handleReadMoreBtnClick(e) {
     const currentItemID = String(e.target.parentNode.parentNode.getAttribute("data-id"));
     const json = alreadyRead.getJsonFromLocalStorage("NewsFromHome");
-    const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
-    alreadyRead.newsArr = news; // записываем их для поиска
-    alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
+    const news = alreadyRead.dataFromLocalStorage(json);
+    alreadyRead.newsArr = news;
+    alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID);
     if (alreadyRead.readNews.length === 0) {
         const todayNews = {
             date: `${alreadyRead.getCurrentDate()}`,
@@ -6611,977 +7223,9 @@ function handleReadMoreBtnClick(e) {
                 alreadyRead.checkedNew
             ]
         };
-        alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
+        alreadyRead.readNews.push(todayNews);
     } else alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(alreadyRead.checkedNew);
-    // alreadyRead.leaveUniqueNews();
     alreadyRead.saveToLocalStorage();
-}
-// common arr in localStorage []
-// strucure of arr with read-news on single day
-//    [{date:30.01.2023, news: [{...}, {....}, {....}]] - arr on every date
-// toDo - create uniqueFilter function
-// toDo - fix date format from 12/1/2023 to 12/01/2023
-// toDo - сделать класс show только первому списку аккордеона
-// toDo - убрать дублирование в сторедж пришедщих новіх новостей
-// testing arrays with different days
-const dayOne = [
-    {
-        date: "30/1/2023",
-        news: [
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            }, 
-        ]
-    }, 
-];
-const dayTwo = [
-    {
-        date: "31/1/2023",
-        news: [
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/246fe9bf-07b6-5bfd-a35b-439d5a85da39",
-                url: "https://www.nytimes.com/article/expiration-dates.html",
-                id: 100000007075927,
-                asset_id: 100000007075927,
-                source: "New York Times",
-                published_date: "2020-04-13",
-                updated: "2023-01-24 13:47:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Cooking and Cookbooks;Food;Quarantine (Life and Culture);Food Contamination and Poisoning;internal-sub-only",
-                column: null,
-                byline: "By J. Kenji L\xf3pez-Alt",
-                type: "Article",
-                title: "The Food Expiration Dates You Should Actually Follow",
-                abstract: "The first thing you should know? The dates, as we know them, have nothing to do with safety. J. Kenji L\xf3pez-Alt explains.",
-                des_facet: [
-                    "Cooking and Cookbooks",
-                    "Food",
-                    "Quarantine (Life and Culture)",
-                    "Food Contamination and Poisoning",
-                    "internal-sub-only", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Jonathan Carlson",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2020/04/15/dining/15Kenji-Cover-Illustration/15Kenji-Cover-Illustration-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
-                url: "https://www.nytimes.com/article/best-soup-recipes.html",
-                id: 100000008713287,
-                asset_id: 100000008713287,
-                source: "New York Times",
-                published_date: "2023-01-23",
-                updated: "2023-01-25 16:39:46",
-                section: "Food",
-                subsection: "",
-                nytdsection: "food",
-                adx_keywords: "Soups;Recipes;internal-sub-only",
-                column: null,
-                byline: "By Krysten Chambrot",
-                type: "Article",
-                title: "Soup\u2019s On",
-                abstract: "Everyone knows it\u2019s the best food. These 24 recipes prove it.",
-                des_facet: [
-                    "Soups",
-                    "Recipes",
-                    "internal-sub-only"
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            },
-            {
-                uri: "nyt://article/0b4b123b-ff4d-565f-bc04-0bc94f114b6f",
-                url: "https://www.nytimes.com/2023/01/19/well/live/aging-tips-margareta-magnusson.html",
-                id: 100000008734867,
-                asset_id: 100000008734867,
-                source: "New York Times",
-                published_date: "2023-01-19",
-                updated: "2023-01-23 13:30:40",
-                section: "Well",
-                subsection: "Live",
-                nytdsection: "well",
-                adx_keywords: "Elderly;Age, Chronological;Content Type: Service;Longevity;Memory;internal-sub-only-nl",
-                column: null,
-                byline: "By Jancee Dunn",
-                type: "Article",
-                title: "3 Steps to Age Exuberantly",
-                abstract: "An 86-year-old author has a few rules to live by even when the trials of getting older make it easy to complain.",
-                des_facet: [
-                    "Elderly",
-                    "Age, Chronological",
-                    "Content Type: Service",
-                    "Longevity",
-                    "Memory",
-                    "internal-sub-only-nl", 
-                ],
-                org_facet: [],
-                per_facet: [],
-                geo_facet: [],
-                media: [
-                    {
-                        type: "image",
-                        subtype: "photo",
-                        caption: "",
-                        copyright: "Delcan & Co.",
-                        approved_for_syndication: 1,
-                        "media-metadata": [
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-thumbStandard.jpg",
-                                format: "Standard Thumbnail",
-                                height: 75,
-                                width: 75
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo210.jpg",
-                                format: "mediumThreeByTwo210",
-                                height: 140,
-                                width: 210
-                            },
-                            {
-                                url: "https://static01.nyt.com/images/2023/01/25/well/19Well-NL-Exuberance/19Well-NL-Exuberance-mediumThreeByTwo440.jpg",
-                                format: "mediumThreeByTwo440",
-                                height: 293,
-                                width: 440
-                            }, 
-                        ]
-                    }, 
-                ],
-                eta_id: 0
-            }, 
-        ]
-    }, 
-];
-const arr = [
-    dayOne,
-    dayTwo
-]; // localStorage.setItem('alreadyReadNews', JSON.stringify(arr));
- // let idOfHaveReadNews = [];
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ajQd1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "haveRead", ()=>haveRead);
-parcelHelpers.export(exports, "addHaveReadStylesForCard", ()=>addHaveReadStylesForCard);
-class HaveReadStyles {
-    constructor(){
-        this.currentItemID = null;
-    }
-    addAlreadyReadStyles(currentItemID) {
-        const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
-        currItemEl.classList.add("already-read");
-        const imgEl = currItemEl.firstElementChild.firstElementChild;
-        imgEl.classList.add("already-read-bg");
-    }
-    checkFetchedNewsByID(array) {
-        const json = this.getJsonFromLocalStorage("IdOfHaveReadNews");
-        const arrOfId = this.dataFromLocalStorage(json);
-        if (arrOfId !== null) array.forEach((result)=>{
-            let selected;
-            if (result.hasOwnProperty("slug_name")) selected = result.slug_name;
-            else if (result.hasOwnProperty("_id")) selected = result._id;
-            else if (result.hasOwnProperty("id")) selected = String(result.id);
-            if (arrOfId.includes(selected)) this.addAlreadyReadStyles(selected);
-        });
-    }
-    dataFromLocalStorage(json) {
-        try {
-            const data = JSON.parse(json);
-            return data;
-        } catch (error) {
-            console.log(error.name);
-            console.log(error.message);
-        }
-    }
-    getJsonFromLocalStorage(key) {
-        const json = localStorage.getItem(key);
-        return json;
-    }
-}
-const haveRead = new HaveReadStyles();
-function addHaveReadStylesForCard(event) {
-    haveRead.currentItemID = event.target.parentNode.parentNode.getAttribute("data-id");
-    const json = haveRead.getJsonFromLocalStorage("IdOfHaveReadNews");
-    const arrOfId = haveRead.dataFromLocalStorage(json);
-    if (arrOfId !== null) {
-        arrOfId.push(haveRead.currentItemID);
-        localStorage.setItem("IdOfHaveReadNews", JSON.stringify(arrOfId));
-    } else localStorage.setItem("IdOfHaveReadNews", JSON.stringify([
-        haveRead.currentItemID
-    ]));
-    haveRead.addAlreadyReadStyles(haveRead.currentItemID);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bnYX0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "checkBtnId", ()=>checkBtnId);
-function checkBtnId() {
-    if (localStorage.getItem("news-added-to-favorite")) {
-        const btnlistELements = document.querySelectorAll(".news__item");
-        btnlistELements.forEach((item)=>{
-            JSON.parse(localStorage.getItem("news-added-to-favorite")).find((elem)=>{
-                if (item.dataset.id === elem.id) {
-                    item.firstElementChild.children[1].firstElementChild.textContent = "Remove from favorite";
-                    item.firstElementChild.children[1].firstElementChild.classList.remove("news__favorite-btn");
-                    item.firstElementChild.children[1].firstElementChild.classList.add("btn-width");
-                    item.firstElementChild.children[1].lastElementChild.classList.remove("favorite-btn__icon-add");
-                    item.firstElementChild.children[1].lastElementChild.classList.add("favorite-btn__icon-remove");
-                }
-            });
-        });
-    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fz9DP":[function(require,module,exports) {
@@ -7824,8 +7468,8 @@ var enableBodyScroll = function enableBodyScroll(targetElement) {
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dDndo":[function(require,module,exports) {
-var _addToRead = require("../add-to-read");
-var _haveReadOnHome = require("../haveReadOnHome");
+var _addToRead = require("../read/add-to-read");
+var _haveReadOnHome = require("../read/haveReadOnHome");
 const newsListEl = document.querySelector(".news__list");
 function addRemoveHandler(event) {
     if (event.target.classList.contains("news__readmore-link")) {
@@ -7854,7 +7498,34 @@ function addRemoveHandler(event) {
 newsListEl.addEventListener("click", addRemoveHandler);
 newsListEl.addEventListener("click", addRemoveHandler);
 
-},{"../add-to-read":"8N0ZO","../haveReadOnHome":"ajQd1"}],"2HtmT":[function(require,module,exports) {
+},{"../read/add-to-read":"2BGxX","../read/haveReadOnHome":"akEGE"}],"cM83U":[function(require,module,exports) {
+const newsListElements = document.querySelector(".news__list");
+let arrayOfFavoriteNews = [];
+if (localStorage.getItem("news-added-to-favorite")) JSON.parse(localStorage.getItem("news-added-to-favorite")).map((item)=>{
+    arrayOfFavoriteNews.push(item);
+});
+function addRemoveToLocalStore(event) {
+    if (event.target.nodeName !== "DIV") return;
+    arrayOfFavoriteNews.push({
+        image: event.target.parentNode.firstElementChild.src,
+        title: event.target.parentNode.parentNode.children[1].textContent,
+        text: event.target.parentNode.parentNode.children[2].textContent,
+        href: event.target.parentNode.parentNode.lastElementChild.lastElementChild.href,
+        date: event.target.parentNode.parentNode.lastElementChild.firstElementChild.textContent,
+        id: event.target.parentNode.parentNode.dataset.id,
+        h3: event.target.parentNode.lastElementChild.textContent
+    });
+    localStorage.setItem("news-added-to-favorite", JSON.stringify(arrayOfFavoriteNews));
+    if (event.target.classList.contains("div")) {
+        const arrayWithremovedNew = JSON.parse(localStorage.getItem("news-added-to-favorite")).filter((item)=>item.id !== event.target.parentNode.parentNode.dataset.id);
+        localStorage.removeItem("news-added-to-favorite");
+        localStorage.setItem("news-added-to-favorite", JSON.stringify(arrayWithremovedNew));
+        arrayOfFavoriteNews = arrayWithremovedNew;
+    }
+}
+newsListElements.addEventListener("click", addRemoveToLocalStore);
+
+},{}],"2HtmT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -8028,7 +7699,7 @@ async function onError(error) {
     }).catch((e)=>console.log(e));
 }
 
-},{"axios":"jo6P5","../axios/axiosDefaults":"94KhP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./weather-svg":"hrDDr"}],"hrDDr":[function(require,module,exports) {
+},{"axios":"jo6P5","../axios/axiosDefaults":"94KhP","./weather-svg":"hrDDr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hrDDr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "clearDay", ()=>clearDay);
@@ -8058,8 +7729,8 @@ const rain = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3
 var _newsFetchJs = require("./requests/newsFetch.js");
 var _createMarkupJs = require("./markup/createMarkup.js");
 var _renderMarkupJs = require("./markup/renderMarkup.js");
-var _fromFetchToLocalStorage = require("./fromFetchToLocalStorage");
-var _haveReadOnHomeJs = require("./haveReadOnHome.js");
+var _fromFetchToLocalStorage = require("./read/fromFetchToLocalStorage");
+var _haveReadOnHome = require("./read/haveReadOnHome");
 var _axios = require("axios");
 var _paginationJs = require("./pagination/pagination.js");
 var _emptyFetchJs = require("./requests/emptyFetch.js");
@@ -8086,7 +7757,7 @@ function getCategoriesNews(e) {
         return resp.data.results;
     }).then((results)=>{
         (0, _fromFetchToLocalStorage.addFetchedToLocalStorage)(results);
-        (0, _haveReadOnHomeJs.haveRead).checkFetchedNewsByID(results);
+        (0, _haveReadOnHome.haveRead).checkFetchedNewsByID(results);
     });
 }
 function renderActiveBtn(e) {
@@ -8154,7 +7825,7 @@ bodyClik.addEventListener("click", (e)=>{
     }
 });
 
-},{"./requests/newsFetch.js":"rV8zm","./markup/createMarkup.js":"hd7ZQ","./markup/renderMarkup.js":"flc1Q","axios":"jo6P5","./pagination/pagination.js":"gIUTo","./requests/emptyFetch.js":"kNjUq","./fromFetchToLocalStorage":"5R6nN","./haveReadOnHome.js":"ajQd1","./favorit/checkBtnId.js":"bnYX0"}],"c0Zyy":[function(require,module,exports) {
+},{"./requests/newsFetch.js":"rV8zm","./markup/createMarkup.js":"hd7ZQ","./markup/renderMarkup.js":"flc1Q","./read/fromFetchToLocalStorage":"04BY2","./read/haveReadOnHome":"akEGE","axios":"jo6P5","./pagination/pagination.js":"gIUTo","./requests/emptyFetch.js":"kNjUq","./favorit/checkBtnId.js":"bnYX0"}],"c0Zyy":[function(require,module,exports) {
 const labelEl = document.querySelector(".label");
 const btnSearch = document.querySelector(".btn-search-mob");
 const clickOnBtnSearch = (event)=>{
@@ -8164,58 +7835,7 @@ const clickOnBtnSearch = (event)=>{
 };
 btnSearch.addEventListener("click", clickOnBtnSearch);
 
-},{}],"cYlDo":[function(require,module,exports) {
-var _createMarkup = require("../markup/createMarkup");
-var _renderMarkup = require("../markup/renderMarkup");
-var _emptyFetch = require("../requests/emptyFetch");
-var _newsFetch = require("../requests/newsFetch");
-var _fromFetchToLocalStorage = require("../fromFetchToLocalStorage");
-var _haveReadOnHome = require("../haveReadOnHome");
-var _pagination = require("../pagination/pagination");
-var _checkBtnId = require("../favorit/checkBtnId");
-const refs = {
-    form: document.querySelector(".header-form"),
-    input: document.querySelector(".header-input"),
-    newsList: document.querySelector(".news__list")
-};
-refs.form.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    let size;
-    if (refs.input.value.trim() === "") return;
-    const oprions = {
-        q: refs.input.value.trim()
-    };
-    (0, _newsFetch.getNews)("articles", oprions).then((resp1)=>{
-        refs.newsList.innerHTML = "";
-        (0, _renderMarkup.renderMarkup)(refs.newsList, (0, _createMarkup.createMarkup)(resp1.data.response.docs, "inputsCards"));
-        (0, _emptyFetch.showNoNewsSection)(resp1.data.response.docs);
-        window.localStorage.setItem("lastFetchType", JSON.stringify({
-            type: "input",
-            value: refs.input.value
-        }));
-        refs.input.value = "";
-        (0, _newsFetch.getNews)("articles", oprions).then((resp)=>{
-            refs.newsList.innerHTML = "";
-            (0, _renderMarkup.renderMarkup)(refs.newsList, (0, _createMarkup.createMarkup)(resp.data.response.docs, "inputsCards"));
-            (0, _emptyFetch.showNoNewsSection)(resp.data.response.docs);
-            (0, _checkBtnId.checkBtnId)();
-            size = Math.ceil(resp.data.response.meta.hits / 10);
-            if (size > 99) size = 99;
-            window.localStorage.setItem("lastFetchType", JSON.stringify({
-                type: "input",
-                value: refs.input.value
-            }));
-            if (resp.data.response.meta.hits !== 0) (0, _pagination.init)(size);
-            refs.input.value = "";
-            return resp.data.response.docs;
-        }).then((results)=>{
-            (0, _fromFetchToLocalStorage.addFetchedToLocalStorage)(results);
-            (0, _haveReadOnHome.haveRead).checkFetchedNewsByID(results);
-        });
-    });
-});
-
-},{"../markup/createMarkup":"hd7ZQ","../markup/renderMarkup":"flc1Q","../requests/newsFetch":"rV8zm","../pagination/pagination":"gIUTo","../requests/emptyFetch":"kNjUq","../fromFetchToLocalStorage":"5R6nN","../haveReadOnHome":"ajQd1","../favorit/checkBtnId":"bnYX0"}],"fRqDa":[function(require,module,exports) {
+},{}],"fRqDa":[function(require,module,exports) {
 var _newsFetch = require("../requests/newsFetch");
 var _renderMarkup = require("../markup/renderMarkup");
 var _createMarkup = require("../markup/createMarkup");
@@ -8276,33 +7896,58 @@ function fetchPagination(e) {
  //   );
  // });
 
-},{"../requests/newsFetch":"rV8zm","../markup/renderMarkup":"flc1Q","../markup/createMarkup":"hd7ZQ"}],"cM83U":[function(require,module,exports) {
-const newsListElements = document.querySelector(".news__list");
-let arrayOfFavoriteNews = [];
-if (localStorage.getItem("news-added-to-favorite")) JSON.parse(localStorage.getItem("news-added-to-favorite")).map((item)=>{
-    arrayOfFavoriteNews.push(item);
-});
-function addRemoveToLocalStore(event) {
-    if (event.target.nodeName !== "DIV") return;
-    arrayOfFavoriteNews.push({
-        image: event.target.parentNode.firstElementChild.src,
-        title: event.target.parentNode.parentNode.children[1].textContent,
-        text: event.target.parentNode.parentNode.children[2].textContent,
-        href: event.target.parentNode.parentNode.lastElementChild.lastElementChild.href,
-        date: event.target.parentNode.parentNode.lastElementChild.firstElementChild.textContent,
-        id: event.target.parentNode.parentNode.dataset.id,
-        h3: event.target.parentNode.lastElementChild.textContent
+},{"../requests/newsFetch":"rV8zm","../markup/renderMarkup":"flc1Q","../markup/createMarkup":"hd7ZQ"}],"cYlDo":[function(require,module,exports) {
+var _createMarkup = require("../markup/createMarkup");
+var _renderMarkup = require("../markup/renderMarkup");
+var _emptyFetch = require("../requests/emptyFetch");
+var _newsFetch = require("../requests/newsFetch");
+var _fromFetchToLocalStorage = require("../read/fromFetchToLocalStorage");
+var _haveReadOnHome = require("../read/haveReadOnHome");
+var _pagination = require("../pagination/pagination");
+var _checkBtnId = require("../favorit/checkBtnId");
+const refs = {
+    form: document.querySelector(".header-form"),
+    input: document.querySelector(".header-input"),
+    newsList: document.querySelector(".news__list")
+};
+refs.form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let size;
+    if (refs.input.value.trim() === "") return;
+    const oprions = {
+        q: refs.input.value.trim(),
+        sort: "newest"
+    };
+    (0, _newsFetch.getNews)("articles", oprions).then((resp1)=>{
+        refs.newsList.innerHTML = "";
+        (0, _renderMarkup.renderMarkup)(refs.newsList, (0, _createMarkup.createMarkup)(resp1.data.response.docs, "inputsCards"));
+        (0, _emptyFetch.showNoNewsSection)(resp1.data.response.docs);
+        window.localStorage.setItem("lastFetchType", JSON.stringify({
+            type: "input",
+            value: refs.input.value
+        }));
+        refs.input.value = "";
+        (0, _newsFetch.getNews)("articles", oprions).then((resp)=>{
+            refs.newsList.innerHTML = "";
+            (0, _renderMarkup.renderMarkup)(refs.newsList, (0, _createMarkup.createMarkup)(resp.data.response.docs, "inputsCards"));
+            (0, _emptyFetch.showNoNewsSection)(resp.data.response.docs);
+            (0, _checkBtnId.checkBtnId)();
+            size = Math.ceil(resp.data.response.meta.hits / 10);
+            if (size > 99) size = 99;
+            window.localStorage.setItem("lastFetchType", JSON.stringify({
+                type: "input",
+                value: refs.input.value
+            }));
+            if (resp.data.response.meta.hits !== 0) (0, _pagination.init)(size);
+            refs.input.value = "";
+            return resp.data.response.docs;
+        }).then((results)=>{
+            (0, _fromFetchToLocalStorage.addFetchedToLocalStorage)(results);
+            (0, _haveReadOnHome.haveRead).checkFetchedNewsByID(results);
+        });
     });
-    localStorage.setItem("news-added-to-favorite", JSON.stringify(arrayOfFavoriteNews));
-    if (event.target.classList.contains("div")) {
-        const arrayWithremovedNew = JSON.parse(localStorage.getItem("news-added-to-favorite")).filter((item)=>item.id !== event.target.parentNode.parentNode.dataset.id);
-        localStorage.removeItem("news-added-to-favorite");
-        localStorage.setItem("news-added-to-favorite", JSON.stringify(arrayWithremovedNew));
-        arrayOfFavoriteNews = arrayWithremovedNew;
-    }
-}
-newsListElements.addEventListener("click", addRemoveToLocalStore);
+});
 
-},{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
+},{"../markup/createMarkup":"hd7ZQ","../markup/renderMarkup":"flc1Q","../requests/emptyFetch":"kNjUq","../requests/newsFetch":"rV8zm","../read/fromFetchToLocalStorage":"04BY2","../read/haveReadOnHome":"akEGE","../pagination/pagination":"gIUTo","../favorit/checkBtnId":"bnYX0"}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
 
 //# sourceMappingURL=index.975ef6c8.js.map

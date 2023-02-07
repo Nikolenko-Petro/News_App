@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://YevheniiKravchukUA.github.io/js-team-project",
+  "homepage": "https://Nikolenko-Petro.github.io/News_App",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /js-team-project/"
+    "build": "parcel build src/*.html --public-url /News_App/"
   },
   "repository": {
     "type": "git",
