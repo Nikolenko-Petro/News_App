@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/favorite.b07a87f3.css">
+    <script src="/read.4045379e.js" defer=""></script>
+  </head>
+
+  <body>
+    <!-- start header -->
+    <header class="header" id="home">
+      <div class="header__container container">
+        <!-- Logo -->
+        <a class="logo" href="/index.html"> News </a>
+        <!-- nav menu -->
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="/index.html" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="/favorite.html" class="nav__link">Favorite</a>
+            </li>
+            <li class="nav__item">
+              <a href="/read.html" class="nav__link nav__link--current">Read</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- search from -->
+        <form class="header-form" action="submit">
+          <label class="label">
+            <input class="header-input" type="search" name="search" placeholder="Search |">
+            <!-- <svg class="form-icon" width="20" height="19">
+            <use href="/src/images/header-icons.svg#icon-search"></use>
+          </svg> -->
+          </label>
+        </form>
+
+        <!-- switch menu desktop -->
+        <ul class="header-switch-menu-desk list">
+          <li>
+            <button class="btn-light btn" type="button">Light</button>
+          </li>
+
+          <!-- бегунок переключателя для десктопа -->
+          <li>
+            <div class="toggle">
+              <input type="checkbox" class="js-toggle" id="toggle">
+              <label for="toggle"></label>
+            </div>
+          </li>
+
+          <li>
+            <button class="btn-dark btn" type="button">Dark</button>
+          </li>
+        </ul>
+
+        <!-- switch menu tablet -->
+        <ul class="header-switch-menu-tablet list">
+          <li>
+            <button class="btn-svg-sun btn">
+              <svg class="svg-sun" width="21" height="21">
+                <use href="/header-icons.f0db9e25.svg#icon-sun"></use>
+              </svg>
+            </button>
+          </li>
+
+          <!-- бегунок переключателя для таблетки -->
+          <li>
+            <div class="toggle-t">
+              <input type="checkbox" class="js-toggle-t" id="toggle-t">
+              <label for="toggle-t"></label>
+            </div>
+          </li>
+
+          <li>
+            <button class="btn-svg-moon btn">
+              <svg class="svg-moon" width="21" height="21">
+                <use href="/header-icons.f0db9e25.svg#icon-moon"></use>
+              </svg>
+            </button>
+          </li>
+        </ul>
+
+        <!-- switch menu mob -->
+        <ul class="header-switch-menu-mob list">
+          <li class="btn-search-mob">
+            <button class="btn-search" type="button">
+              <svg class="svg-btn-search" width="20" height="20">
+                <use href="/header-icons.f0db9e25.svg#icon-search"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
+              <svg class="menu-toggle__icon" width="24" height="24">
+                <use href="/icons.adfc4680.svg#icon-menu-burger"></use>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <main>
+  <div class="container">
+    <div class="accordion">
+      <!-- <div class="accordion__item accordion__item_show">
+        <div class="accordion__header">20/02/2021</div>
+        <div class="accordion__body">
+          <ul class="news__list accordion__list">
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <div class="accordion__header">19/02/2021</div>
+        <div class="accordion__body">
+          <ul class="news__list accordion__list">
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <div class="accordion__header">18/02/2021</div>
+        <div class="accordion__body">
+          <ul class="news__list accordion__list">
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <div class="accordion__header">17/02/2021</div>
+        <div class="accordion__body">
+          <ul class="news__list accordion__list">
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+            <li class="news__item accordion__news">
+              <div class="news__image-box">
+                <img
+                  class="news__image"
+                  src="./images/news-card/mob/news-card-img-mob@1x.jpg"
+                  alt=""
+                />
+                <div class="div">
+                  <button
+                    class="news__favorite-btn"
+                    data-value="4"
+                    type="button"
+                  >
+                    Add to favorite
+                  </button>
+                  <svg class="favorite-btn__icon-add" width="16" height="16">
+                    <use href="./images/icons.svg#icon-icon-heart-1"></use>
+                  </svg>
+                </div>
+                <h3 class="news__image-heading">Job Searching</h3>
+              </div>
+              <h2 class="news__title">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Adipisci quidem pariatur similique praesentium corporis sunt
+                alias natus fugit, assumenda nemo laborum sint maiores nihil,
+                obcaecati animi aliquam optio velit quam.
+              </h2>
+              <p class="news__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi officiis laboriosam, magnam assumenda ipsam itaque
+                dignissimos eaque dolorum ex optio, omnis totam dolor, animi
+                expedita nemo possimus? Ducimus, eligendi vitae.
+              </p>
+              <div class="news__lower-box">
+                <p class="news__date">today`s day</p>
+                <a class="news__readmore-link" href="#">Read more</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+    <svg class="loading-svg" width="32" height="32">
+      <use href="/icons.adfc4680.svg#icon-loading"></use>
+    </svg>
+  </div>
+</main>
+
+    <div class="menu-container js-menu-container" id="mobile-menu">
+  <a class="burger-logo" href="/index.html">News</a>
+
+  <button class="menu-toggle js-close-menu">
+    <svg class="menu-toggle__icon" width="24" height="24">
+      <use class="close-svg" href="/header-icons.f0db9e25.svg#close-modal"></use>
+    </svg>
+  </button>
+
+  <ul class="mobile-menu list">
+    <li class="mobile-menu-item">
+      <svg class="burger-svg" width="32" height="32">
+        <use href="/header-icons.f0db9e25.svg#icon-home"></use>
+      </svg>
+
+      <a class="mobile-menu-link link" href="/index.html">Home</a>
+
+    </li>
+
+    <li class="mobile-menu-item">
+      <svg class="burger-svg" width="32" height="32">
+        <use href="/header-icons.f0db9e25.svg#icon-heart"></use>
+      </svg>
+
+      <a class="mobile-menu-link link" href="/favorite.html">Favorite</a>
+    </li>
+
+    <li class="mobile-menu-item bgc-active">
+      <svg class="burger-svg" width="32" height="32">
+        <use href="/header-icons.f0db9e25.svg#icon-read"></use>
+      </svg>
+
+      <a class="mobile-menu-link mobile-menu-link--active link" href="/read.html">Read</a>
+
+      <svg class="chevron-right" width="24" height="24">
+        <use href="/header-icons.f0db9e25.svg#icon-chevron-right"></use>
+      </svg>
+
+    </li>
+  </ul>
+
+  <ul class="switch-menu list">
+    <li>
+      <button class="btn-svg-sun btn">
+        <svg class="svg-sun" width="21" height="21">
+          <use href="/header-icons.f0db9e25.svg#icon-sun"></use>
+        </svg>
+      </button>
+    </li>
+
+    <!-- бегунок переключателя бургер меню -->
+    <li>
+      <div class="toggle-m">
+        <input type="checkbox" class="js-toggle-m" id="toggle-m">
+        <label for="toggle-m"></label>
+      </div>
+    </li>
+
+    <li>
+      <button class="btn-svg-moon btn">
+        <svg class="svg-moon" width="21" height="21">
+          <use href="/header-icons.f0db9e25.svg#icon-moon"></use>
+        </svg>
+      </button>
+    </li>
+  </ul>
+</div>
+  </body>
+</html>
